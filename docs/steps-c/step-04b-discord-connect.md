@@ -1,6 +1,6 @@
 ---
 name: 'step-04b-discord-connect'
-description: '디스코드 플러그인 설치, discord.py 설치, fetch 스크립트 생성, 프사 설정'
+description: '디스코드 페어링, discord.py 설치, fetch 스크립트 생성, 프사 설정'
 
 nextStepFile: './step-05-bootstrap.md'
 statusFile: '.claude-bot-status.json'
@@ -11,7 +11,7 @@ discordScripts: '../data/discord-scripts.md'
 
 ## STEP GOAL:
 
-디스코드 플러그인을 설치하고, discord.py와 기본 스크립트를 세팅하고, 봇 프로필 사진을 설정합니다.
+디스코드 채널 페어링을 완료하고, discord.py와 기본 스크립트를 세팅하고, 봇 프로필 사진을 설정합니다.
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -45,9 +45,10 @@ discordScripts: '../data/discord-scripts.md'
 
 ## CONTEXT BOUNDARIES:
 
-- step-04a에서 세션 종료 후 `/resume`으로 돌아온 상태입니다
+- step-04a에서 세션 종료 후 `claude --channels plugin:discord@claude-plugins-official`로 재시작, `/resume`으로 돌아온 상태입니다
 - step-01b를 거쳐 여기로 라우팅됨
 - 환경변수 DISCORD_BOT_TOKEN이 설정되어 있어야 합니다
+- 디스코드 플러그인은 step-04a에서 이미 설치 및 `/discord:configure` 완료
 
 ## MANDATORY SEQUENCE
 
@@ -57,7 +58,7 @@ discordScripts: '../data/discord-scripts.md'
 
 "**다시 돌아오셨군요! 반가워요! 👋**
 
-먼저 환경변수가 잘 적용됐는지 확인할게요..."
+`--channels` 플래그로 실행하셨죠? 먼저 환경변수가 잘 적용됐는지 확인할게요..."
 
 환경변수 확인:
 ```bash
@@ -68,19 +69,29 @@ echo $DISCORD_BOT_TOKEN | head -c 10
 - 출력이 없으면: "❌ 환경변수가 설정되지 않았어요. step-04a의 환경변수 설정을 다시 해주세요."
   → 환경변수가 확인될 때까지 진행하지 않습니다.
 
-### 2. 디스코드 플러그인 설치
+### 2. 디스코드 채널 페어링
 
-"**디스코드 플러그인을 설치할게요!**
+"**디스코드 봇과 페어링을 할 거예요! 🔗**
 
-이 플러그인으로 Claude Code가 디스코드 메시지를 주고받을 수 있어요."
+이 과정으로 디스코드에서 보낸 메시지가 Claude Code까지 전달돼요."
 
-실행:
-```bash
-/plugin install discord@claude-plugins-official
-```
+**페어링 순서:**
 
-설치 확인 후: "✅ 디스코드 플러그인 설치 완료!"
-설치 실패 시 트러블슈팅을 안내합니다.
+1. 디스코드에서 봇에게 **DM(개인 메시지)**을 보내세요 — 아무 메시지나 괜찮아요!
+2. 봇이 **페어링 코드**를 응답할 거예요. 그 코드를 복사하세요.
+3. 여기서 아래 명령어를 실행하세요:
+   ```
+   /discord:access pair <페어링코드>
+   ```
+4. 페어링 성공 후, 접근 정책을 설정하세요:
+   ```
+   /discord:access policy allowlist
+   ```
+
+- 페어링 성공: "✅ 디스코드 페어링 완료! 이제 디스코드에서 보낸 메시지가 Claude Code로 전달돼요!"
+- 실패 시: 에러를 분석하고 해결 방법을 안내합니다. `--channels` 플래그 없이 실행했을 수 있으니 확인합니다.
+
+⚠️ **참고:** 페어링이 안 되면 `claude --channels plugin:discord@claude-plugins-official` 로 실행했는지 다시 확인하세요!
 
 ### 3. discord.py 설치
 
@@ -131,11 +142,17 @@ python3 scripts/fetch_discord.py --limit 5
 
 "**디스코드 연동 완료! 🎉**
 
-- ✅ 디스코드 플러그인 설치됨
+- ✅ 디스코드 채널 페어링 완료
 - ✅ discord.py 설치됨
 - ✅ `scripts/fetch_discord.py` 생성됨
 - ✅ `scripts/change_avatar.py` 생성됨
 - ✅ 연결 테스트 통과
+
+💡 **중요:** 앞으로 Claude Code를 실행할 때는 반드시 이렇게 실행하세요:
+```
+claude --channels plugin:discord@claude-plugins-official
+```
+`--channels` 플래그가 있어야 디스코드 메시지를 실시간으로 받을 수 있어요!
 
 다음 단계에서는 드디어 봇과 첫 대화를 나눠요! 🤖✨"
 
@@ -164,7 +181,7 @@ Display: **[C] 다음 단계로 진행 (부트스트랩 대화)**
 ### ✅ SUCCESS:
 
 - 환경변수 확인됨
-- 디스코드 플러그인 설치됨
+- 디스코드 채널 페어링 완료 (`/discord:access pair` + `policy allowlist`)
 - discord.py 설치됨
 - fetch_discord.py, change_avatar.py 생성됨
 - 연결 테스트 통과
@@ -173,8 +190,10 @@ Display: **[C] 다음 단계로 진행 (부트스트랩 대화)**
 ### ❌ SYSTEM FAILURE:
 
 - 환경변수 미확인 상태로 진행
+- 페어링 없이 진행
+- `--channels` 플래그 없이 실행된 상태에서 진행
 - 설치 실패 시 무시하고 진행
 - 스크립트 파일 생성 누락
 - 연결 테스트 없이 진행
 
-**Master Rule:** 환경변수가 확인되지 않으면 절대 진행하지 마세요. 디스코드 연결이 동작하는지 반드시 테스트하세요.
+**Master Rule:** 환경변수가 확인되지 않으면 절대 진행하지 마세요. 페어링이 완료되지 않으면 채널 연동이 동작하지 않습니다. 디스코드 연결이 동작하는지 반드시 테스트하세요.
