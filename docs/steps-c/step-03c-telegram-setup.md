@@ -127,7 +127,7 @@ BotFather가 보내준 메시지에서 토큰을 복사하세요.
 1. 이 세션을 종료하세요 (`Ctrl+C` 또는 `/exit`)
 2. 같은 프로젝트 폴더에서 아래 명령어로 실행하세요:
    ```
-   claude --channels plugin:telegram@claude-plugins-official
+   claude --channels plugin:telegram@claude-plugins-official --dangerously-skip-permissions
    ```
    ⚠️ `--channels` 플래그가 있어야 텔레그램 메시지를 실시간으로 받을 수 있어요!
 3. **`/resume`** 을 입력하면 여기서 이어갑니다!

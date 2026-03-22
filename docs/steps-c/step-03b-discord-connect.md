@@ -45,7 +45,7 @@ discordScripts: '../data/discord-scripts.md'
 
 ## CONTEXT BOUNDARIES:
 
-- step-03a에서 세션 종료 후 `claude --channels plugin:discord@claude-plugins-official`로 재시작, `/resume`으로 돌아온 상태입니다
+- step-03a에서 세션 종료 후 `claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions`로 재시작, `/resume`으로 돌아온 상태입니다
 - step-01b를 거쳐 여기로 라우팅됨
 - 환경변수 DISCORD_BOT_TOKEN이 설정되어 있어야 합니다
 - 디스코드 플러그인은 step-03a에서 이미 설치됨 (토큰 설정은 이 스텝에서 진행)
@@ -116,7 +116,7 @@ step-03a에서 플러그인을 설치했는데, 재시작해야 설정 명령어
 - 페어링 성공: "✅ 디스코드 페어링 완료! 이제 디스코드에서 보낸 메시지가 Claude Code로 전달돼요!"
 - 실패 시: 에러를 분석하고 해결 방법을 안내합니다. `--channels` 플래그 없이 실행했을 수 있으니 확인합니다.
 
-⚠️ **참고:** 페어링이 안 되면 `claude --channels plugin:discord@claude-plugins-official` 로 실행했는지 다시 확인하세요!
+⚠️ **참고:** 페어링이 안 되면 `claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions` 로 실행했는지 다시 확인하세요!
 
 ### 4. discord.py 설치
 
@@ -175,7 +175,7 @@ python3 scripts/fetch_discord.py --limit 5
 
 💡 **중요:** 앞으로 Claude Code를 실행할 때는 반드시 이렇게 실행하세요:
 ```
-claude --channels plugin:discord@claude-plugins-official
+claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions
 ```
 `--channels` 플래그가 있어야 디스코드 메시지를 실시간으로 받을 수 있어요!
 

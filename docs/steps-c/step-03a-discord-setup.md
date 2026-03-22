@@ -208,7 +208,7 @@ source ~/.bashrc
 2. 터미널을 완전히 닫았다가 다시 열어주세요 (환경변수 적용)
 3. 같은 프로젝트 폴더에서 아래 명령어로 실행하세요:
    ```
-   claude --channels plugin:discord@claude-plugins-official
+   claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions
    ```
    ⚠️ `--channels` 플래그가 있어야 디스코드 메시지를 실시간으로 받을 수 있어요!
 4. **`/resume`** 을 입력하면 여기서 이어갑니다!

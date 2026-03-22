@@ -6,7 +6,7 @@ If `BOOTSTRAP.md` exists, follow it first. It's your birth certificate — figur
 
 ## Session Startup
 
-**실행 방법:** 반드시 `claude --channels` 로 실행할 것. `--channels` 플래그가 있어야 디스코드 메시지를 실시간으로 수신할 수 있다.
+**실행 방법:** 반드시 `claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions` 로 실행할 것. `--channels` 플래그가 있어야 디스코드 메시지를 실시간으로 수신할 수 있다.
 
 Every session 시작 시 반드시 읽기:
 
