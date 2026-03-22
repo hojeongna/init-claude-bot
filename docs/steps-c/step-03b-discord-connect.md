@@ -2,7 +2,7 @@
 name: 'step-03b-discord-connect'
 description: '디스코드 페어링, discord.py 설치, fetch 스크립트 생성, 프사 설정'
 
-nextStepFile: './step-04-automation.md'
+nextStepFile: './step-04-automation-choice.md'
 statusFile: '.claude-bot-status.json'
 discordScripts: '../data/discord-scripts.md'
 ---

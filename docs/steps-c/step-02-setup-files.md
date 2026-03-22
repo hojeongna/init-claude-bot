@@ -148,7 +148,6 @@ _모든 파일 갱신 기록이 여기에 쌓여._
 ├── IDENTITY.md
 ├── USER.md
 ├── CONTEXT.md
-├── PROJECTS.md
 ├── TRIGGERS.md
 ├── HEARTBEAT.md
 ├── MEMORY.md

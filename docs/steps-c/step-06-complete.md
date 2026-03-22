@@ -32,6 +32,19 @@ statusFile: '.claude-bot-status.json'
 - 🚫 새로운 설정을 하지 마세요
 - 💬 사용자가 성취감을 느끼게 하세요
 
+## EXECUTION PROTOCOLS:
+
+- 🎯 봇의 정체성으로 축하 메시지 전달
+- 💾 상태 파일을 COMPLETE로 최종 업데이트
+- 📖 CHANGELOG에 완료 기록
+
+## CONTEXT BOUNDARIES:
+
+- step-05에서 봇 정체성 대화가 완료된 상태입니다
+- IDENTITY.md, USER.md, SOUL.md가 채워져 있습니다
+- 모든 자동화(크론, 하트비트)가 등록된 상태입니다
+- 이 스텝이 워크플로우의 마지막입니다
+
 ## MANDATORY SEQUENCE
 
 ### 1. 축하 메시지
@@ -96,7 +109,13 @@ IDENTITY.md를 읽어서 봇의 이름과 이모지를 확인합니다.
 - SOUL.md, IDENTITY.md는 함께 진화시켜나가요
 
 🔍 **검증:**
-- 세팅이 제대로 됐는지 확인하고 싶으면 워크플로우를 **검증 모드(V)**로 실행하세요"
+- 세팅이 제대로 됐는지 확인하고 싶으면 워크플로우를 **검증 모드(V)**로 실행하세요
+
+⚡ **모델 변경 추천:**
+- 지금까지 온보딩은 고성능 모델로 진행했지만, 일상 운영은 **Sonnet 4.6**으로도 충분해요!
+- Sonnet은 더 빠르고 가벼워서 일상 대화, 크론 작업, 트리거 처리에 최적이에요
+- 변경 방법: `/model sonnet` 입력하면 바로 전환돼요
+- 복잡한 작업이 필요할 때만 다시 Opus로 올리면 돼요"
 
 ### 4. 마무리
 
@@ -110,7 +129,7 @@ IDENTITY.md를 읽어서 봇의 이름과 이모지를 확인합니다.
 
 ```json
 {
-  "stepsCompleted": ["step-01-init", "step-02-setup-files", "step-03-automation", "step-04a-discord-setup", "step-04b-discord-connect", "step-05-bootstrap", "step-06-complete"],
+  "stepsCompleted": ["step-01-init", "step-02-setup-files", "step-03-messaging-choice", "step-03b-discord-connect", "step-04-automation-choice", "step-04c-peers-cron", "step-05-bootstrap", "step-06-complete"],
   "lastStep": "step-06-complete",
   "status": "COMPLETE",
   "completedDate": "[현재 날짜]"

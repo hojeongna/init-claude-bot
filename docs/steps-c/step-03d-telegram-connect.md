@@ -2,7 +2,7 @@
 name: 'step-03d-telegram-connect'
 description: '텔레그램 페어링, 연결 테스트'
 
-nextStepFile: './step-04-automation.md'
+nextStepFile: './step-04-automation-choice.md'
 statusFile: '.claude-bot-status.json'
 ---
 

@@ -1,16 +1,16 @@
 ---
-name: 'step-04-automation'
-description: '기본 크론 등록 — 하트비트와 최신화 루프'
+name: 'step-04s-solo-cron'
+description: '단일 세션 크론 등록 — 하트비트, 최신화, 스냅샷, 재등록'
 
 nextStepFile: './step-05-bootstrap.md'
 statusFile: '.claude-bot-status.json'
 ---
 
-# Step 4: 자동화 설정
+# Step 4s: 자동화 설정 (단일 세션 모드)
 
 ## STEP GOAL:
 
-기본 크론(하트비트 30분, 최신화 루프 5일)을 등록하여 봇이 자율적으로 동작할 수 있게 합니다.
+기본 크론(하트비트 30분, 최신화 루프 5일, 스냅샷, 재등록)을 등록하여 봇이 자율적으로 동작할 수 있게 합니다.
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -44,7 +44,7 @@ statusFile: '.claude-bot-status.json'
 
 ## CONTEXT BOUNDARIES:
 
-- step-03 (메시징 플랫폼 설정)이 완료된 상태입니다
+- step-04-automation-choice에서 Solo 모드를 선택한 상태입니다
 - HEARTBEAT.md가 프로젝트 루트에 존재합니다
 - CLAUDE.md에 크론 규칙이 정의되어 있습니다
 
@@ -59,7 +59,7 @@ statusFile: '.claude-bot-status.json'
 크론은 정해진 시간마다 자동으로 실행되는 작업이에요.
 봇이 혼자서도 일할 수 있게 해주는 거예요!
 
-두 가지 기본 크론을 등록할게요:"
+네 가지 기본 크론을 등록할게요:"
 
 ### 2. 하트비트 크론 설명 및 등록
 
@@ -72,7 +72,7 @@ statusFile: '.claude-bot-status.json'
 
 유저한테는 아무 알림도 안 가요. 조용히 동작합니다!"
 
-`/loop` 또는 CronCreate를 사용하여 등록:
+CronCreate를 사용하여 등록:
 
 ```
 스케줄: */30 * * * *
@@ -92,7 +92,7 @@ statusFile: '.claude-bot-status.json'
 
 일종의 자기 점검 시간이에요!"
 
-`/loop` 또는 CronCreate를 사용하여 등록:
+CronCreate를 사용하여 등록:
 
 ```
 스케줄: 3 9 */5 * *
@@ -115,11 +115,11 @@ statusFile: '.claude-bot-status.json'
 클코를 껐다 키면 크론이 전부 사라지거든요.
 이 백업이 있어야 다시 복원할 수 있어요!"
 
-`/loop` 또는 CronCreate를 사용하여 등록:
+CronCreate를 사용하여 등록:
 
 ```
 스케줄: 7 0 * * *
-프롬프트: "Run as background agent: Run CronList. Update memory/cron-registry.md — overwrite the '## 현재 등록된 크론' section with full cron list (schedule + prompt for each). Append a snapshot entry to '## 스냅샷 이력' with timestamp. Respond SNAPSHOT_OK."
+프롬프트: "Run as background agent: Run CronList. Update memory/cron-registry.md — overwrite the '현재 등록된 크론' section with full cron list (schedule + prompt for each). Append a snapshot entry to '스냅샷 이력' with timestamp. Respond SNAPSHOT_OK."
 ```
 
 **참고:** 분 오프셋 7을 줘서 다른 크론과 겹치지 않게 합니다.
@@ -139,7 +139,7 @@ statusFile: '.claude-bot-status.json'
 
 이러면 크론이 만료되는 일이 없어요!"
 
-`/loop` 또는 CronCreate를 사용하여 등록:
+CronCreate를 사용하여 등록:
 
 ```
 스케줄: 11 9 */5 * *
@@ -158,8 +158,6 @@ statusFile: '.claude-bot-status.json'
 
 ### 7. 크론 등록 확인
 
-등록된 크론 목록을 보여줍니다:
-
 "**등록된 크론 ✅**
 
 | 크론 | 주기 | 스케줄 |
@@ -177,11 +175,11 @@ statusFile: '.claude-bot-status.json'
 
 ### 8. 상태 업데이트
 
-`{statusFile}`의 `stepsCompleted`에 `step-04-automation`을 추가합니다.
+`{statusFile}`의 `stepsCompleted`에 `step-04s-solo-cron`을 추가합니다.
 
 ### 9. Present MENU OPTIONS
 
-Display: **[C] 다음 단계로 진행 (부트스트랩 대화)**
+Display: "**[C] 다음 단계로 진행 (부트스트랩 대화)**"
 
 #### EXECUTION RULES:
 
