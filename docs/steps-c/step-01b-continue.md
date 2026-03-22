@@ -6,8 +6,11 @@ statusFile: '.claude-bot-status.json'
 nextStepOptions:
   step-02: './step-02-setup-files.md'
   step-03: './step-03-automation.md'
+  step-04: './step-04-messaging-choice.md'
   step-04a: './step-04a-discord-setup.md'
   step-04b: './step-04b-discord-connect.md'
+  step-04c: './step-04c-telegram-setup.md'
+  step-04d: './step-04d-telegram-connect.md'
   step-05: './step-05-bootstrap.md'
   step-06: './step-06-complete.md'
 ---
@@ -74,9 +77,13 @@ nextStepOptions:
 |-----------------|----------|
 | step-01-init | step-02-setup-files |
 | step-02-setup-files | step-03-automation |
-| step-03-automation | step-04a-discord-setup |
+| step-03-automation | step-04-messaging-choice |
+| step-04-messaging-choice | step-04-messaging-choice (플랫폼 선택 스텝이 라우팅) |
 | step-04a-discord-setup | step-04b-discord-connect |
 | step-04b-discord-connect | step-05-bootstrap |
+| step-04c-telegram-setup | step-04d-telegram-connect |
+| step-04d-telegram-connect | step-05-bootstrap |
+| step-04-skip | step-05-bootstrap |
 | step-05-bootstrap | step-06-complete |
 
 ### 3. 환영 메시지

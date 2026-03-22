@@ -2,7 +2,7 @@
 name: 'step-03-automation'
 description: '기본 크론 등록 — 하트비트와 최신화 루프'
 
-nextStepFile: './step-04a-discord-setup.md'
+nextStepFile: './step-04-messaging-choice.md'
 statusFile: '.claude-bot-status.json'
 ---
 
@@ -173,7 +173,7 @@ statusFile: '.claude-bot-status.json'
 클코를 재시작해도 크론 레지스트리에서 자동 복원돼요!
 
 나중에 크론을 추가하고 싶으면 봇한테 말하면 돼요!
-다음 단계에서는 디스코드를 연동할 거예요!"
+다음 단계에서는 메시징 플랫폼을 연동할 거예요!"
 
 ### 8. 상태 업데이트
 
@@ -181,7 +181,7 @@ statusFile: '.claude-bot-status.json'
 
 ### 9. Present MENU OPTIONS
 
-Display: **[C] 다음 단계로 진행 (디스코드 연동)**
+Display: **[C] 다음 단계로 진행 (메시징 플랫폼 연동)**
 
 #### EXECUTION RULES:
 
