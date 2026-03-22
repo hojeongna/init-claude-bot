@@ -198,18 +198,23 @@ source ~/.bashrc
 "**8단계: 플러그인에 봇 토큰 설정**
 
 방금 설치한 플러그인에도 토큰을 등록해야 해요.
-아까 복사해둔 토큰을 사용합니다."
+아까 복사해둔 토큰을 `/discord:configure` 뒤에 붙여서 입력하세요!"
 
-실행:
+실행 방법:
 ```
-/discord:configure
+/discord:configure 여기에토큰붙여넣기
 ```
 
-이 명령어를 실행하면 토큰 입력을 안내받습니다. 안내에 따라 진행하세요.
+예시 (토큰은 이런 형태예요):
+```
+/discord:configure MTIzNDU2Nzg5MDEyMzQ1Njc4OQ.GAbcDE.abcdefghijk...
+```
+
+⚠️ **주의:** 토큰을 일반 채팅에 그냥 붙여넣지 마세요! 반드시 `/discord:configure` 뒤에 붙여야 해요!
 
 ⚠️ **참고:** 환경변수(`DISCORD_BOT_TOKEN`)는 discord.py 스크립트용이고, `/discord:configure`는 Claude Channels 플러그인용입니다. 둘 다 필요해요!
 
-설정 확인 후: "✅ 플러그인 토큰 설정 완료!"
+설정이 되면 토큰 앞 6자리를 마스킹해서 보여줍니다. 확인 후: "✅ 플러그인 토큰 설정 완료!"
 
 ### 11. 상태 업데이트
 
