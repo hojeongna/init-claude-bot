@@ -2,7 +2,7 @@
 name: 'step-02-setup-files'
 description: '핵심 파일 세팅 — 템플릿 복사, 디렉토리 생성, hooks 설정'
 
-nextStepFile: './step-03-automation.md'
+nextStepFile: './step-03-messaging-choice.md'
 statusFile: '.claude-bot-status.json'
 ---
 

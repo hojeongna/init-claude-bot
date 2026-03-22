@@ -1,12 +1,12 @@
 ---
-name: 'step-03-automation'
+name: 'step-04-automation'
 description: '기본 크론 등록 — 하트비트와 최신화 루프'
 
-nextStepFile: './step-04-messaging-choice.md'
+nextStepFile: './step-05-bootstrap.md'
 statusFile: '.claude-bot-status.json'
 ---
 
-# Step 3: 자동화 설정
+# Step 4: 자동화 설정
 
 ## STEP GOAL:
 
@@ -44,7 +44,7 @@ statusFile: '.claude-bot-status.json'
 
 ## CONTEXT BOUNDARIES:
 
-- step-02에서 파일 세팅이 완료된 상태입니다
+- step-03 (메시징 플랫폼 설정)이 완료된 상태입니다
 - HEARTBEAT.md가 프로젝트 루트에 존재합니다
 - CLAUDE.md에 크론 규칙이 정의되어 있습니다
 
@@ -173,15 +173,15 @@ statusFile: '.claude-bot-status.json'
 클코를 재시작해도 크론 레지스트리에서 자동 복원돼요!
 
 나중에 크론을 추가하고 싶으면 봇한테 말하면 돼요!
-다음 단계에서는 메시징 플랫폼을 연동할 거예요!"
+다음 단계에서는 드디어 봇과 첫 대화를 나눠요!"
 
 ### 8. 상태 업데이트
 
-`{statusFile}`의 `stepsCompleted`에 `step-03-automation`을 추가합니다.
+`{statusFile}`의 `stepsCompleted`에 `step-04-automation`을 추가합니다.
 
 ### 9. Present MENU OPTIONS
 
-Display: **[C] 다음 단계로 진행 (메시징 플랫폼 연동)**
+Display: **[C] 다음 단계로 진행 (부트스트랩 대화)**
 
 #### EXECUTION RULES:
 

@@ -1,14 +1,14 @@
 ---
-name: 'step-04-messaging-choice'
+name: 'step-03-messaging-choice'
 description: '메시징 플랫폼 선택 — 디스코드 / 텔레그램 / 스킵'
 
-discordSetupFile: './step-04a-discord-setup.md'
-telegramSetupFile: './step-04c-telegram-setup.md'
-nextStepFile: './step-05-bootstrap.md' # 스킵 시 사용
+discordSetupFile: './step-03a-discord-setup.md'
+telegramSetupFile: './step-03c-telegram-setup.md'
+nextStepFile: './step-04-automation.md' # 스킵 시 사용
 statusFile: '.claude-bot-status.json'
 ---
 
-# Step 4: 메시징 플랫폼 선택
+# Step 3: 메시징 플랫폼 선택
 
 ## STEP GOAL:
 
@@ -44,7 +44,7 @@ statusFile: '.claude-bot-status.json'
 
 ## CONTEXT BOUNDARIES:
 
-- step-03에서 크론 설정이 완료된 상태입니다
+- step-02에서 핵심 파일 세팅이 완료된 상태입니다
 - 이 스텝에서 플랫폼을 선택한 후 해당 설정 스텝으로 이동합니다
 
 ## MANDATORY SEQUENCE
@@ -79,7 +79,7 @@ statusFile: '.claude-bot-status.json'
 
 #### IF D (디스코드):
 
-`{statusFile}`의 `stepsCompleted`에 `step-04-messaging-choice`를 추가합니다.
+`{statusFile}`의 `stepsCompleted`에 `step-03-messaging-choice`를 추가합니다.
 `messagingPlatform` 필드에 `"discord"`를 저장합니다.
 
 "**디스코드로 진행할게요! 🎮**"
@@ -88,7 +88,7 @@ statusFile: '.claude-bot-status.json'
 
 #### IF T (텔레그램):
 
-`{statusFile}`의 `stepsCompleted`에 `step-04-messaging-choice`를 추가합니다.
+`{statusFile}`의 `stepsCompleted`에 `step-03-messaging-choice`를 추가합니다.
 `messagingPlatform` 필드에 `"telegram"`을 저장합니다.
 
 "**텔레그램으로 진행할게요! ✈️**"
@@ -97,7 +97,7 @@ statusFile: '.claude-bot-status.json'
 
 #### IF S (스킵):
 
-`{statusFile}`의 `stepsCompleted`에 `step-04-messaging-choice`와 `step-04-skip`을 추가합니다.
+`{statusFile}`의 `stepsCompleted`에 `step-03-messaging-choice`와 `step-03-skip`을 추가합니다.
 `messagingPlatform` 필드에 `"skip"`을 저장합니다.
 
 "**메시징 설정을 스킵합니다! ⏭️**

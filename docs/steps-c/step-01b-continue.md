@@ -5,12 +5,12 @@ description: '이전 세션에서 중단된 워크플로우를 재개합니다'
 statusFile: '.claude-bot-status.json'
 nextStepOptions:
   step-02: './step-02-setup-files.md'
-  step-03: './step-03-automation.md'
-  step-04: './step-04-messaging-choice.md'
-  step-04a: './step-04a-discord-setup.md'
-  step-04b: './step-04b-discord-connect.md'
-  step-04c: './step-04c-telegram-setup.md'
-  step-04d: './step-04d-telegram-connect.md'
+  step-03: './step-03-messaging-choice.md'
+  step-03a: './step-03a-discord-setup.md'
+  step-03b: './step-03b-discord-connect.md'
+  step-03c: './step-03c-telegram-setup.md'
+  step-03d: './step-03d-telegram-connect.md'
+  step-04: './step-04-automation.md'
   step-05: './step-05-bootstrap.md'
   step-06: './step-06-complete.md'
 ---
@@ -76,14 +76,14 @@ nextStepOptions:
 | 마지막 완료 단계 | 다음 단계 |
 |-----------------|----------|
 | step-01-init | step-02-setup-files |
-| step-02-setup-files | step-03-automation |
-| step-03-automation | step-04-messaging-choice |
-| step-04-messaging-choice | step-04-messaging-choice (플랫폼 선택 스텝이 라우팅) |
-| step-04a-discord-setup | step-04b-discord-connect |
-| step-04b-discord-connect | step-05-bootstrap |
-| step-04c-telegram-setup | step-04d-telegram-connect |
-| step-04d-telegram-connect | step-05-bootstrap |
-| step-04-skip | step-05-bootstrap |
+| step-02-setup-files | step-03-messaging-choice |
+| step-03-messaging-choice | step-03-messaging-choice (플랫폼 선택 스텝이 라우팅) |
+| step-03a-discord-setup | step-03b-discord-connect |
+| step-03b-discord-connect | step-04-automation |
+| step-03c-telegram-setup | step-03d-telegram-connect |
+| step-03d-telegram-connect | step-04-automation |
+| step-03-skip | step-04-automation |
+| step-04-automation | step-05-bootstrap |
 | step-05-bootstrap | step-06-complete |
 
 ### 3. 환영 메시지

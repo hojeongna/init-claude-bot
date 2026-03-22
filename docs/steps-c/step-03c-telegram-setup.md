@@ -1,12 +1,12 @@
 ---
-name: 'step-04c-telegram-setup'
+name: 'step-03c-telegram-setup'
 description: '텔레그램 봇 생성, 토큰 발급, 플러그인 설치/설정 → 세션 종료 안내'
 
-nextStepFile: './step-04d-telegram-connect.md' # 세션 종료로 직접 사용되지 않음 — step-01b가 라우팅
+nextStepFile: './step-03d-telegram-connect.md' # 세션 종료로 직접 사용되지 않음 — step-01b가 라우팅
 statusFile: '.claude-bot-status.json'
 ---
 
-# Step 4c: 텔레그램 봇 세팅
+# Step 3c: 텔레그램 봇 세팅
 
 ## STEP GOAL:
 
@@ -31,7 +31,7 @@ Telegram BotFather에서 봇을 생성하고, 토큰을 발급받고, Claude Cha
 ### Step-Specific Rules:
 
 - 🎯 봇 생성, 토큰 발급, 플러그인 설치/설정에 집중하세요
-- 🚫 페어링은 step-04d에서 합니다
+- 🚫 페어링은 step-03d에서 합니다
 - 💬 각 단계를 하나씩 안내하고, 사용자가 따라왔는지 확인하세요
 - ⚠️ 이 스텝 끝에서 반드시 세션 종료 + `--channels` 재시작 + `/resume` 안내를 하세요
 
@@ -44,7 +44,7 @@ Telegram BotFather에서 봇을 생성하고, 토큰을 발급받고, Claude Cha
 
 ## CONTEXT BOUNDARIES:
 
-- step-04-messaging-choice에서 텔레그램을 선택한 상태입니다
+- step-03-messaging-choice에서 텔레그램을 선택한 상태입니다
 - 텔레그램 앱이 필요합니다 (모바일 또는 데스크톱)
 - 이 스텝 끝에서 세션이 종료됩니다
 
@@ -121,7 +121,7 @@ BotFather가 보내준 메시지에서 토큰을 복사하세요.
 
 ### 6. 상태 업데이트
 
-`{statusFile}`의 `stepsCompleted`에 `step-04c-telegram-setup`을 추가합니다.
+`{statusFile}`의 `stepsCompleted`에 `step-03c-telegram-setup`을 추가합니다.
 `telegramBotName` 필드에 사용자가 만든 봇 이름을 저장합니다.
 
 ### 7. 세션 종료 안내
@@ -159,7 +159,7 @@ BotFather가 보내준 메시지에서 토큰을 복사하세요.
 - 봇 토큰 발급 완료
 - 텔레그램 플러그인 설치 완료
 - `/telegram:configure` 토큰 등록 완료
-- 상태 파일 업데이트됨 (step-04d로 라우팅 가능)
+- 상태 파일 업데이트됨 (step-03d로 라우팅 가능)
 - `--channels` 포함 재시작 + `/resume` 안내가 명확하게 전달됨
 - 토큰이 채팅에 노출되지 않음
 

@@ -20,6 +20,10 @@
           {
             "type": "command",
             "command": "cat memory/cron-registry.md 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "command": "echo '--- CRON_RECOVERY_CHECK: 위 크론 레지스트리를 확인하고, CronList로 현재 등록된 크론과 비교하세요. 누락된 크론이 있으면 CronCreate로 재등록하고 레지스트리를 업데이트하세요. ---'"
           }
         ]
       }

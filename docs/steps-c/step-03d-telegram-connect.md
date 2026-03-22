@@ -1,12 +1,12 @@
 ---
-name: 'step-04d-telegram-connect'
+name: 'step-03d-telegram-connect'
 description: '텔레그램 페어링, 연결 테스트'
 
-nextStepFile: './step-05-bootstrap.md'
+nextStepFile: './step-04-automation.md'
 statusFile: '.claude-bot-status.json'
 ---
 
-# Step 4d: 텔레그램 연결
+# Step 3d: 텔레그램 연결
 
 ## STEP GOAL:
 
@@ -42,9 +42,9 @@ statusFile: '.claude-bot-status.json'
 
 ## CONTEXT BOUNDARIES:
 
-- step-04c에서 세션 종료 후 `claude --channels plugin:telegram@claude-plugins-official`로 재시작, `/resume`으로 돌아온 상태입니다
+- step-03c에서 세션 종료 후 `claude --channels plugin:telegram@claude-plugins-official`로 재시작, `/resume`으로 돌아온 상태입니다
 - step-01b를 거쳐 여기로 라우팅됨
-- 텔레그램 플러그인은 step-04c에서 이미 설치 및 `/telegram:configure` 완료
+- 텔레그램 플러그인은 step-03c에서 이미 설치 및 `/telegram:configure` 완료
 
 ## MANDATORY SEQUENCE
 
@@ -106,11 +106,11 @@ claude --channels plugin:telegram@claude-plugins-official
 
 ### 5. 상태 업데이트
 
-`{statusFile}`의 `stepsCompleted`에 `step-04d-telegram-connect`를 추가합니다.
+`{statusFile}`의 `stepsCompleted`에 `step-03d-telegram-connect`를 추가합니다.
 
 ### 6. Present MENU OPTIONS
 
-Display: **[C] 다음 단계로 진행 (부트스트랩 대화)**
+Display: **[C] 다음 단계로 진행 (자동화 설정)**
 
 #### EXECUTION RULES:
 

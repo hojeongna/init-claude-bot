@@ -86,9 +86,19 @@ Every session 시작 시 반드시 읽기:
 
 ### 크론 복원 (세션 시작 시)
 
-SessionStart(startup) 훅이 `memory/cron-registry.md`를 주입한다.
-레지스트리가 주입되면 기록된 모든 크론을 CronCreate로 재등록하고,
-새로운 Job ID로 레지스트리를 업데이트할 것.
+SessionStart(startup) 훅이 `memory/cron-registry.md`를 주입하고 `CRON_RECOVERY_CHECK` 지시를 보낸다.
+
+**크론 복원 절차 (매 세션 시작 시 반드시 실행):**
+
+1. `CronList`로 현재 등록된 크론 목록을 확인한다
+2. `memory/cron-registry.md`의 등록 목록과 비교한다
+3. 레지스트리에는 있지만 현재 등록되지 않은 크론을 찾는다
+4. 누락된 크론이 있으면 `CronCreate`로 재등록한다
+5. 새로운 Job ID로 `memory/cron-registry.md`를 업데이트한다
+6. 이미 모든 크론이 등록되어 있으면 아무것도 하지 않는다
+
+이 작업은 백그라운드 에이전트가 아닌 **메인 세션에서 즉시** 수행할 것.
+크론 복원은 유저에게 알리지 않고 Silent Automation으로 처리한다.
 
 ## 도구/자동화 원칙
 
