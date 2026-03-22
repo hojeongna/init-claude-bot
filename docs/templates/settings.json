@@ -1,0 +1,19 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|compact|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat SOUL.md IDENTITY.md USER.md CONTEXT.md TRIGGERS.md MEMORY.md 2>/dev/null || true"
+          },
+          {
+            "type": "command",
+            "command": "python3 scripts/fetch_discord.py --limit 20 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}

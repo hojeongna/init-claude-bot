@@ -1,0 +1,1 @@
+Read the FULL docs/workflow.md file, then follow its directions exactly. This is a step-file workflow — load one step at a time, read it completely, execute it, then load the next step only when directed.
