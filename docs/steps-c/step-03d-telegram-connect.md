@@ -125,7 +125,7 @@ claude --channels plugin:telegram@claude-plugins-official --dangerously-skip-per
 ```
 `--channels` 플래그가 있어야 텔레그램 메시지를 실시간으로 받을 수 있어요!
 
-다음 단계에서는 드디어 봇과 첫 대화를 나눠요! 🤖✨"
+다음 단계에서는 자동화 크론 운영 방식을 선택할 거예요! ⚙️"
 
 ### 6. 상태 업데이트
 
