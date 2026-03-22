@@ -48,7 +48,7 @@ discordScripts: '../data/discord-scripts.md'
 - step-03a에서 세션 종료 후 `claude --channels plugin:discord@claude-plugins-official`로 재시작, `/resume`으로 돌아온 상태입니다
 - step-01b를 거쳐 여기로 라우팅됨
 - 환경변수 DISCORD_BOT_TOKEN이 설정되어 있어야 합니다
-- 디스코드 플러그인은 step-03a에서 이미 설치 및 `/discord:configure` 완료
+- 디스코드 플러그인은 step-03a에서 이미 설치됨 (토큰 설정은 이 스텝에서 진행)
 
 ## MANDATORY SEQUENCE
 
@@ -69,7 +69,32 @@ echo $DISCORD_BOT_TOKEN | head -c 10
 - 출력이 없으면: "❌ 환경변수가 설정되지 않았어요. step-03a의 환경변수 설정을 다시 해주세요."
   → 환경변수가 확인될 때까지 진행하지 않습니다.
 
-### 2. 디스코드 채널 페어링
+### 2. 플러그인에 봇 토큰 등록
+
+"**플러그인에 봇 토큰을 등록할게요!**
+
+step-03a에서 플러그인을 설치했는데, 재시작해야 설정 명령어가 활성화돼요.
+지금은 재시작한 상태니까 바로 설정할 수 있어요!
+
+아까 복사해둔 토큰을 `/discord:configure` 뒤에 붙여서 입력하세요:"
+
+실행 방법:
+```
+/discord:configure 여기에토큰붙여넣기
+```
+
+예시 (토큰은 이런 형태예요):
+```
+/discord:configure MTIzNDU2Nzg5MDEyMzQ1Njc4OQ.GAbcDE.abcdefghijk...
+```
+
+⚠️ **주의:** 토큰을 일반 채팅에 그냥 붙여넣지 마세요! 반드시 `/discord:configure` 뒤에 붙여야 해요!
+
+⚠️ **참고:** 환경변수(`DISCORD_BOT_TOKEN`)는 discord.py 스크립트용이고, `/discord:configure`는 Claude Channels 플러그인용입니다. 둘 다 필요해요!
+
+설정이 되면 토큰 앞 6자리를 마스킹해서 보여줍니다. 확인 후: "✅ 플러그인 토큰 설정 완료!"
+
+### 3. 디스코드 채널 페어링
 
 "**디스코드 봇과 페어링을 할 거예요! 🔗**
 
@@ -93,7 +118,7 @@ echo $DISCORD_BOT_TOKEN | head -c 10
 
 ⚠️ **참고:** 페어링이 안 되면 `claude --channels plugin:discord@claude-plugins-official` 로 실행했는지 다시 확인하세요!
 
-### 3. discord.py 설치
+### 4. discord.py 설치
 
 "**discord.py 패키지를 설치할게요!**
 
@@ -103,7 +128,7 @@ echo $DISCORD_BOT_TOKEN | head -c 10
 pip install discord.py
 ```
 
-### 4. 스크립트 생성
+### 5. 스크립트 생성
 
 `{discordScripts}`를 읽고 두 파일을 생성합니다:
 
@@ -115,7 +140,7 @@ pip install discord.py
 - `{discordScripts}`의 `change_avatar.py` 섹션 코드를 `scripts/change_avatar.py`로 생성
 - "이 스크립트로 나중에 봇 프사를 바꿀 수 있어요"
 
-### 5. 프로필 사진 설정 (선택)
+### 6. 프로필 사진 설정 (선택)
 
 "**봇 프로필 사진을 설정할까요? 🖼️**
 
@@ -127,7 +152,7 @@ pip install discord.py
 - IF Y: 이미지 경로를 받아 `python3 scripts/change_avatar.py <경로>` 실행
 - IF N: "👌 나중에 해도 돼요! `python3 scripts/change_avatar.py 이미지경로` 로 언제든 바꿀 수 있어요."
 
-### 6. 연결 테스트
+### 7. 연결 테스트
 
 "**디스코드 연결을 테스트해볼게요!**"
 
@@ -138,7 +163,7 @@ python3 scripts/fetch_discord.py --limit 5
 - 메시지가 출력되면: "✅ 디스코드 연결 성공!"
 - 에러가 나면: 에러를 분석하고 해결 방법을 안내합니다.
 
-### 7. 결과 요약
+### 8. 결과 요약
 
 "**디스코드 연동 완료! 🎉**
 
@@ -156,11 +181,11 @@ claude --channels plugin:discord@claude-plugins-official
 
 다음 단계에서는 드디어 봇과 첫 대화를 나눠요! 🤖✨"
 
-### 8. 상태 업데이트
+### 9. 상태 업데이트
 
 `{statusFile}`의 `stepsCompleted`에 `step-03b-discord-connect`를 추가합니다.
 
-### 9. Present MENU OPTIONS
+### 10. Present MENU OPTIONS
 
 Display: **[C] 다음 단계로 진행 (자동화 설정)**
 

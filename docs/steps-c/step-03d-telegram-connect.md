@@ -44,7 +44,7 @@ statusFile: '.claude-bot-status.json'
 
 - step-03c에서 세션 종료 후 `claude --channels plugin:telegram@claude-plugins-official`로 재시작, `/resume`으로 돌아온 상태입니다
 - step-01b를 거쳐 여기로 라우팅됨
-- 텔레그램 플러그인은 step-03c에서 이미 설치 및 `/telegram:configure` 완료
+- 텔레그램 플러그인은 step-03c에서 이미 설치됨 (토큰 설정은 이 스텝에서 진행)
 
 ## MANDATORY SEQUENCE
 
@@ -56,7 +56,30 @@ statusFile: '.claude-bot-status.json'
 
 `--channels` 플래그로 실행하셨죠? 텔레그램 연결을 마무리할게요!"
 
-### 2. 텔레그램 채널 페어링
+### 2. 플러그인에 봇 토큰 등록
+
+"**플러그인에 봇 토큰을 등록할게요!**
+
+step-03c에서 플러그인을 설치했는데, 재시작해야 설정 명령어가 활성화돼요.
+지금은 재시작한 상태니까 바로 설정할 수 있어요!
+
+아까 BotFather가 보내준 토큰을 `/telegram:configure` 뒤에 붙여서 입력하세요:"
+
+실행 방법:
+```
+/telegram:configure 여기에토큰붙여넣기
+```
+
+예시 (토큰은 이런 형태예요):
+```
+/telegram:configure 123456789:ABCdefGHIjklMNOpqrsTUVwxyz
+```
+
+⚠️ **주의:** 토큰을 일반 채팅에 그냥 붙여넣지 마세요! 반드시 `/telegram:configure` 뒤에 붙여야 해요!
+
+설정이 되면 확인 메시지가 표시됩니다: "✅ 플러그인 토큰 설정 완료!"
+
+### 3. 텔레그램 채널 페어링
 
 "**텔레그램 봇과 페어링을 할 거예요! 🔗**
 
@@ -80,7 +103,7 @@ statusFile: '.claude-bot-status.json'
 
 ⚠️ **참고:** 페어링이 안 되면 `claude --channels plugin:telegram@claude-plugins-official` 로 실행했는지 다시 확인하세요!
 
-### 3. 연결 테스트
+### 4. 연결 테스트
 
 "**텔레그램 연결을 테스트해볼게요!**
 
@@ -89,7 +112,7 @@ statusFile: '.claude-bot-status.json'
 - 메시지가 도착하면: "✅ 텔레그램 연결 성공! 🎉"
 - 도착하지 않으면: 트러블슈팅을 안내합니다.
 
-### 4. 결과 요약
+### 5. 결과 요약
 
 "**텔레그램 연동 완료! 🎉**
 
@@ -104,11 +127,11 @@ claude --channels plugin:telegram@claude-plugins-official
 
 다음 단계에서는 드디어 봇과 첫 대화를 나눠요! 🤖✨"
 
-### 5. 상태 업데이트
+### 6. 상태 업데이트
 
 `{statusFile}`의 `stepsCompleted`에 `step-03d-telegram-connect`를 추가합니다.
 
-### 6. Present MENU OPTIONS
+### 7. Present MENU OPTIONS
 
 Display: **[C] 다음 단계로 진행 (자동화 설정)**
 
