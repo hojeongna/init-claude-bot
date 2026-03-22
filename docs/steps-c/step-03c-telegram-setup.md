@@ -1,6 +1,6 @@
 ---
 name: 'step-03c-telegram-setup'
-description: '텔레그램 봇 생성, 토큰 발급, 플러그인 설치/설정 → 세션 종료 안내'
+description: '텔레그램 봇 생성, 토큰 발급, 플러그인 설치 → 세션 종료 안내'
 
 nextStepFile: './step-03d-telegram-connect.md' # 세션 종료로 직접 사용되지 않음 — step-01b가 라우팅
 statusFile: '.claude-bot-status.json'
@@ -10,7 +10,7 @@ statusFile: '.claude-bot-status.json'
 
 ## STEP GOAL:
 
-Telegram BotFather에서 봇을 생성하고, 토큰을 발급받고, Claude Channels 텔레그램 플러그인을 설치/설정합니다. `--channels` 플래그로 재시작을 위해 세션을 종료하고 `/resume`으로 돌아오도록 안내합니다.
+Telegram BotFather에서 봇을 생성하고, 토큰을 발급받고, Claude Channels 텔레그램 플러그인을 설치합니다. (플러그인 토큰 설정은 재시작 후 step-03d에서 진행) `--channels` 플래그로 재시작을 위해 세션을 종료하고 `/resume`으로 돌아오도록 안내합니다.
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -30,7 +30,7 @@ Telegram BotFather에서 봇을 생성하고, 토큰을 발급받고, Claude Cha
 
 ### Step-Specific Rules:
 
-- 🎯 봇 생성, 토큰 발급, 플러그인 설치/설정에 집중하세요
+- 🎯 봇 생성, 토큰 발급, 플러그인 설치에 집중하세요
 - 🚫 페어링은 step-03d에서 합니다
 - 💬 각 단계를 하나씩 안내하고, 사용자가 따라왔는지 확인하세요
 - ⚠️ 이 스텝 끝에서 반드시 세션 종료 + `--channels` 재시작 + `/resume` 안내를 하세요
@@ -40,7 +40,7 @@ Telegram BotFather에서 봇을 생성하고, 토큰을 발급받고, Claude Cha
 - 🎯 하나씩 순서대로 안내
 - 💾 상태 파일 업데이트 후 세션 종료 유도
 - 📖 봇 토큰은 절대 대화에 직접 노출하지 말 것
-- 🚫 플러그인 설정 전에 다음 단계로 넘어가지 마세요
+- 🚫 플러그인 설치 전에 다음 단계로 넘어가지 마세요
 
 ## CONTEXT BOUNDARIES:
 
@@ -104,7 +104,18 @@ BotFather가 보내준 메시지에서 토큰을 복사하세요.
 설치 확인 후: "✅ 텔레그램 플러그인 설치 완료!"
 설치 실패 시 트러블슈팅을 안내합니다.
 
-### 5. 플러그인에 봇 토큰 등록
+### 5. 플러그인 리로드
+
+"**방금 설치한 플러그인을 활성화할게요!**"
+
+실행:
+```
+/reload-plugins
+```
+
+리로드 완료 후: "✅ 플러그인 리로드 완료!"
+
+### 6. 플러그인에 봇 토큰 등록
 
 "**4단계: 플러그인에 봇 토큰 설정**
 
@@ -119,12 +130,12 @@ BotFather가 보내준 메시지에서 토큰을 복사하세요.
 
 설정 확인 후: "✅ 플러그인 토큰 설정 완료!"
 
-### 6. 상태 업데이트
+### 7. 상태 업데이트
 
 `{statusFile}`의 `stepsCompleted`에 `step-03c-telegram-setup`을 추가합니다.
 `telegramBotName` 필드에 사용자가 만든 봇 이름을 저장합니다.
 
-### 7. 세션 종료 안내
+### 8. 세션 종료 안내
 
 "**세션을 종료하고 다시 돌아와야 해요! ⚠️**
 
@@ -158,6 +169,7 @@ BotFather가 보내준 메시지에서 토큰을 복사하세요.
 - 텔레그램 봇 생성 완료
 - 봇 토큰 발급 완료
 - 텔레그램 플러그인 설치 완료
+- 텔레그램 플러그인 설치 완료
 - `/telegram:configure` 토큰 등록 완료
 - 상태 파일 업데이트됨 (step-03d로 라우팅 가능)
 - `--channels` 포함 재시작 + `/resume` 안내가 명확하게 전달됨
@@ -168,7 +180,7 @@ BotFather가 보내준 메시지에서 토큰을 복사하세요.
 - 토큰을 채팅에 붙여넣도록 유도
 - `/resume` 안내 없이 세션 종료
 - `--channels` 플래그 안내 누락
-- 플러그인 설치/설정 누락
+- 플러그인 설치 누락
 - 상태 파일 업데이트 누락
 
 **Master Rule:** 봇 토큰은 절대 채팅에 노출되면 안 됩니다. `/telegram:configure`로만 설정하세요.
