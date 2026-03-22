@@ -13,6 +13,15 @@
             "command": "python3 scripts/fetch_discord.py --limit 20 2>/dev/null || true"
           }
         ]
+      },
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat memory/cron-registry.md 2>/dev/null || true"
+          }
+        ]
       }
     ]
   }
