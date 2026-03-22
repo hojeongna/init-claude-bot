@@ -124,6 +124,7 @@ https://discord.com/developers/applications
 2. **URL 생성기(URL Generator)** 클릭
 3. **범위(Scopes)**에서 **bot** 체크
 4. **봇 권한(Bot Permissions)**에서 체크:
+   - ✅ **채널 보기(View Channels)** — 필수! 이게 없으면 다른 권한이 전부 무시돼요
    - ✅ **메시지 보내기(Send Messages)**
    - ✅ **메시지 기록 보기(Read Message History)**
    - ✅ **파일 첨부(Attach Files)**
