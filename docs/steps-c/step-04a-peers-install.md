@@ -134,11 +134,14 @@ claude mcp add --scope user --transport stdio claude-peers -- bun ~/claude-peers
 지금 세션을 종료하고 아래 명령어로 다시 시작해주세요:
 
 ```
-claude --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers
+claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers
 ```
 
-- `--dangerously-load-development-channels server:claude-peers` — peers 간 메시지가 즉시 전달돼요
-- `--dangerously-skip-permissions` — 권한 프롬프트 없이 실행돼요
+- `--channels plugin:discord@claude-plugins-official` — 디스코드 메시지 실시간 수신
+- `--dangerously-load-development-channels server:claude-peers` — peers 간 메시지 즉시 전달
+- `--dangerously-skip-permissions` — 권한 프롬프트 없이 실행
+
+⚠️ 텔레그램을 선택한 경우 `discord` 대신 `telegram`으로 바꿔주세요.
 
 다시 돌아오면 워크플로우가 자동으로 이어서 진행돼요! 😊"
 
