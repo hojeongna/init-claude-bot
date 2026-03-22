@@ -130,6 +130,8 @@ https://discord.com/developers/applications
    - ✅ **파일 첨부(Attach Files)**
    - ✅ **임베드 링크(Embed Links)**
    - ✅ **반응 추가(Add Reactions)**
+   - ✅ **외부 이모지 사용(Use External Emojis)** — 다른 서버 커스텀 이모지 사용
+   - ✅ **외부 스티커 사용(Use External Stickers)** — 다른 서버 커스텀 스티커 사용
    - ✅ **메시지 관리(Manage Messages)** (핀 기능용)
 5. 아래에 생성된 URL을 복사해서 브라우저에 붙여넣기
 6. 봇을 초대할 서버를 선택하고 **승인(Authorize)** 클릭
