@@ -131,7 +131,14 @@ claude mcp add --scope user --transport stdio claude-peers -- bun ~/claude-peers
 - ✅ MCP 서버 등록
 
 **⚠️ 중요:** MCP 서버를 사용하려면 **세션을 재시작**해야 해요!
-지금 세션을 종료하고 다시 시작해주세요.
+지금 세션을 종료하고 아래 명령어로 다시 시작해주세요:
+
+```
+claude --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers
+```
+
+- `--dangerously-load-development-channels server:claude-peers` — peers 간 메시지가 즉시 전달돼요
+- `--dangerously-skip-permissions` — 권한 프롬프트 없이 실행돼요
 
 다시 돌아오면 워크플로우가 자동으로 이어서 진행돼요! 😊"
 

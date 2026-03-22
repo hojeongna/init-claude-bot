@@ -82,10 +82,11 @@ peers MCP 서버가 정상 작동하는지 확인하고, 크론 전용 세션을
 
 ```
 cd [현재 프로젝트 경로]
-claude --dangerously-skip-permissions
+claude --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers
 ```
 
-⚠️ `--dangerously-skip-permissions` 플래그가 필요해요! 크론 세션은 자율적으로 파일 수정, 스크립트 실행 등을 해야 하는데, 권한 프롬프트가 뜨면 승인해줄 사람이 없거든요.
+- `--dangerously-skip-permissions` — 크론 세션은 자율적으로 파일 수정, 스크립트 실행을 해야 하므로 필요해요
+- `--dangerously-load-development-channels server:claude-peers` — peers 간 메시지가 즉시 전달돼요 (없으면 수동 폴링 필요)
 
 시작하면 그 세션에서 이렇게 말해주세요:
 
