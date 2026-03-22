@@ -11,24 +11,36 @@ _온보딩 시 선택한 모드가 기록됩니다._
 
 ---
 
+## 응답 모드 설명
+
+각 크론의 **응답** 컬럼은 실행 후 유저에게 어떻게 알릴지를 결정합니다:
+
+| 모드 | 설명 |
+|------|------|
+| `silent` | 조용히 처리. 유저에게 아무 알림 없음. 결과 코드만 내부 반환 |
+| `notify` | 실행 결과를 유저에게 알림. 문제 발생 시 즉시 알림 |
+| `conditional` | 평소엔 silent, 이슈가 있을 때만 유저에게 알림 |
+
+---
+
 ## Peers 모드 (크론 세션 분리)
 
 _peers 모드 선택 시 아래 형식으로 기록됩니다._
 
 ### 크론 세션 크론
 
-| 이름 | 스케줄 | 프롬프트 |
-|------|--------|---------|
-| 하트비트 | `*/30 * * * *` | Run as background agent: Read HEARTBEAT.md and execute instructions. Respond HEARTBEAT_OK if nothing to report. |
-| 최신화 루프 | `3 9 */5 * *` | Run as background agent: Review all config files for outdated info. Update as needed. Log changes to memory/CHANGELOG.md. Respond REFRESH_OK. |
-| 크론 스냅샷 | `7 0 * * *` | Run as background agent: Run CronList. Update memory/cron-registry.md. Respond SNAPSHOT_OK. |
-| 크론 재등록 | `11 9 */5 * *` | Run as background agent: Read memory/cron-registry.md. Delete ALL existing crons. Re-register all. Respond REREGISTER_OK. |
+| 이름 | 스케줄 | 응답 | 프롬프트 |
+|------|--------|------|---------|
+| 하트비트 | `*/30 * * * *` | silent | Run as background agent: Read HEARTBEAT.md and execute instructions. Respond HEARTBEAT_OK if nothing to report. |
+| 최신화 루프 | `3 9 */5 * *` | silent | Run as background agent: Review all config files for outdated info. Update as needed. Log changes to memory/CHANGELOG.md. Respond REFRESH_OK. |
+| 크론 스냅샷 | `7 0 * * *` | silent | Run as background agent: Run CronList. Update memory/cron-registry.md. Respond SNAPSHOT_OK. |
+| 크론 재등록 | `11 9 */5 * *` | silent | Run as background agent: Read memory/cron-registry.md. Delete ALL existing crons. Re-register all. Respond REREGISTER_OK. |
 
 ### 메인 세션 크론
 
-| 이름 | 스케줄 | 프롬프트 |
-|------|--------|---------|
-| 헬스체크 | `0 * * * *` | Run as background agent: Call list_peers (scope: machine). Check if cron-worker peer exists. If found, HEALTH_OK. If not, notify user. |
+| 이름 | 스케줄 | 응답 | 프롬프트 |
+|------|--------|------|---------|
+| 헬스체크 | `0 * * * *` | conditional | Run as background agent: Call list_peers (scope: machine). Check if cron-worker peer exists. If found, HEALTH_OK. If not, notify user. |
 
 ---
 
@@ -38,12 +50,12 @@ _solo 모드 선택 시 아래 형식으로 기록됩니다._
 
 ### 현재 등록된 크론
 
-| 이름 | 스케줄 | 프롬프트 |
-|------|--------|---------|
-| 하트비트 | `*/30 * * * *` | Run as background agent: Read HEARTBEAT.md and execute instructions. Respond HEARTBEAT_OK if nothing to report. |
-| 최신화 루프 | `3 9 */5 * *` | Run as background agent: Review all config files for outdated info. Update as needed. Log changes to memory/CHANGELOG.md. Respond REFRESH_OK. |
-| 크론 스냅샷 | `7 0 * * *` | Run as background agent: Run CronList. Update memory/cron-registry.md. Respond SNAPSHOT_OK. |
-| 크론 재등록 | `11 9 */5 * *` | Run as background agent: Read memory/cron-registry.md. Delete ALL existing crons. Re-register all. Respond REREGISTER_OK. |
+| 이름 | 스케줄 | 응답 | 프롬프트 |
+|------|--------|------|---------|
+| 하트비트 | `*/30 * * * *` | silent | Run as background agent: Read HEARTBEAT.md and execute instructions. Respond HEARTBEAT_OK if nothing to report. |
+| 최신화 루프 | `3 9 */5 * *` | silent | Run as background agent: Review all config files for outdated info. Update as needed. Log changes to memory/CHANGELOG.md. Respond REFRESH_OK. |
+| 크론 스냅샷 | `7 0 * * *` | silent | Run as background agent: Run CronList. Update memory/cron-registry.md. Respond SNAPSHOT_OK. |
+| 크론 재등록 | `11 9 */5 * *` | silent | Run as background agent: Read memory/cron-registry.md. Delete ALL existing crons. Re-register all. Respond REREGISTER_OK. |
 
 ---
 
