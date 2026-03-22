@@ -133,15 +133,26 @@ claude mcp add --scope user --transport stdio claude-peers -- bun ~/claude-peers
 **⚠️ 중요:** MCP 서버를 사용하려면 **세션을 재시작**해야 해요!
 지금 세션을 종료하고 아래 명령어로 다시 시작해주세요:
 
+**디스코드를 선택한 경우:**
 ```
 claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers
 ```
 
-- `--channels plugin:discord@claude-plugins-official` — 디스코드 메시지 실시간 수신
+**텔레그램을 선택한 경우:**
+```
+claude --channels plugin:telegram@claude-plugins-official --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers
+```
+
+**메시징을 스킵한 경우:**
+```
+claude --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers
+```
+
+- `--channels` — 메시징 플랫폼 실시간 수신
 - `--dangerously-load-development-channels server:claude-peers` — peers 간 메시지 즉시 전달
 - `--dangerously-skip-permissions` — 권한 프롬프트 없이 실행
 
-⚠️ 텔레그램을 선택한 경우 `discord` 대신 `telegram`으로 바꿔주세요.
+사용자가 step-03에서 선택한 플랫폼에 맞는 명령어를 안내하세요. `{statusFile}`의 `stepsCompleted`에서 `step-03a` 또는 `step-03c`로 판단할 수 있습니다.
 
 다시 돌아오면 워크플로우가 자동으로 이어서 진행돼요! 😊"
 

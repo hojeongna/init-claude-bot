@@ -95,11 +95,17 @@ IDENTITY.md를 읽어서 봇의 이름과 이모지를 확인합니다.
 "**앞으로 이렇게 쓰면 돼요:**
 
 🖥️ **터미널에서:**
-- `claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions` 로 실행하면 자동으로 파일 로드 + 디스코드 실시간 연결!
-- `--channels` 플래그가 있어야 디스코드 메시지를 실시간으로 받을 수 있어요
+
+디스코드를 선택한 경우:
+- `claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers`
+
+텔레그램을 선택한 경우:
+- `claude --channels plugin:telegram@claude-plugins-official --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers`
+
+- `--channels` 플래그가 있어야 메시지를 실시간으로 받을 수 있어요
 - 대화하면 하트비트가 알아서 기록하고 파일 업데이트해요
 
-💬 **디스코드에서:**
+💬 **메시징 플랫폼에서:**
 - 봇한테 메시지 보내면 응답해요
 - 세션이 꺼져있어도 다음에 켜면 대화 내역을 불러와요
 
