@@ -96,7 +96,6 @@ mkdir -p .claude/
 | `docs/templates/HEARTBEAT.md` | `./HEARTBEAT.md` | 주기 작업 정의 |
 | `docs/templates/MEMORY.md` | `./MEMORY.md` | 장기 기억 |
 | `docs/templates/DISCORD.md` | `./DISCORD.md` | Discord API 확장 |
-| `docs/templates/CRON-REGISTRY.md` | `./memory/cron-registry.md` | 크론 레지스트리 |
 | `docs/templates/settings.json` | `./.claude/settings.json` | SessionStart 훅 |
 
 각 파일을 복사하면서 진행 상황을 보여줍니다:
@@ -112,7 +111,6 @@ mkdir -p .claude/
 - ✅ HEARTBEAT.md — 주기 작업 정의
 - ✅ MEMORY.md — 장기 기억
 - ✅ DISCORD.md — Discord API 확장
-- ✅ memory/cron-registry.md — 크론 레지스트리
 - ✅ .claude/settings.json — SessionStart 훅"
 
 ### 4. 빈 CHANGELOG 생성
@@ -153,8 +151,7 @@ _모든 파일 갱신 기록이 여기에 쌓여._
 ├── MEMORY.md
 ├── DISCORD.md
 ├── memory/
-│   ├── CHANGELOG.md
-│   └── cron-registry.md
+│   └── CHANGELOG.md
 └── scripts/
 ```
 

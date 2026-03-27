@@ -95,7 +95,7 @@ init-claude-bot/
     │   ├── discord-scripts.md       Python 스크립트 코드
     │   ├── env-var-setup.md         OS별 환경변수 설정 가이드
     │   └── setup-checklist.md       사용 가이드
-    └── templates/                   ← 프로젝트 루트에 배치될 템플릿 (11개)
+    └── templates/                   ← 프로젝트 루트에 배치될 템플릿 (10개)
         ├── CLAUDE.md                프로젝트 규칙 (세션 시작, 크론, 메모리 등)
         ├── BOOTSTRAP.md             첫 대화 스크립트 (사용 후 삭제됨)
         ├── SOUL.md                  봇 성격 & 원칙
@@ -105,8 +105,7 @@ init-claude-bot/
         ├── TRIGGERS.md              트리거 → 행동 매핑
         ├── HEARTBEAT.md             30분 주기 작업 정의
         ├── MEMORY.md                장기 기억
-        ├── DISCORD.md               Discord API 확장 스크립트
-        └── CRON-REGISTRY.md         크론 레지스트리
+        └── DISCORD.md               Discord API 확장 스크립트
 ```
 
 ## 세팅 후 생성되는 파일
@@ -127,8 +126,7 @@ init-claude-bot/
 ├── DISCORD.md                Discord API 확장
 ├── memory/
 │   ├── YYYY-MM-DD.md         데일리 로그
-│   ├── CHANGELOG.md          파일 변경 이력
-│   └── cron-registry.md      크론 백업
+│   └── CHANGELOG.md          파일 변경 이력
 ├── scripts/
 │   ├── fetch_discord.py      디스코드 채팅 수집
 │   ├── scheduler_daemon.py   스케줄러 데몬 (Daemon 모드)
