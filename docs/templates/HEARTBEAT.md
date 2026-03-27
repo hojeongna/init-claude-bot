@@ -8,7 +8,7 @@
 
 ### 1. 디스코드 대화 수집
 
-discord.py로 최근 30분간의 디스코드 대화 내역을 불러온다.
+Discord REST API로 최근 30분간의 디스코드 대화 내역을 불러온다.
 
 **동작 방식:**
 1. `python3 scripts/fetch_discord.py`로 최근 대화 수집

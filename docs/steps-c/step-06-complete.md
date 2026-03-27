@@ -61,6 +61,8 @@ IDENTITY.md를 읽어서 봇의 이름과 이모지를 확인합니다.
 
 ### 2. 세팅 요약
 
+`{statusFile}`의 `cronMode`를 확인하여 모드에 맞는 요약을 보여줍니다.
+
 "**세팅된 것들:**
 
 📂 **핵심 파일:**
@@ -74,13 +76,14 @@ IDENTITY.md를 읽어서 봇의 이름과 이모지를 확인합니다.
 - MEMORY.md — 장기 기억
 - DISCORD.md — 디스코드 API 확장
 
-⏰ **자동화:**
-- 하트비트 — 30분마다 대화 수집 & 파일 업데이트
-- 최신화 루프 — 5일마다 전체 설정 리뷰
-- 크론 스냅샷 — 1일마다 크론 목록 백업
-- 크론 재등록 — 5일마다 7일 만료 방지 재등록
+⏰ **자동화:**"
 
-🔌 **디스코드:**
+"- 스케줄러 데몬 — LaunchAgent로 자동 실행
+- 하트비트 — 30분마다 대화 수집 & 파일 업데이트
+- [기타 등록된 크론들]
+- 크론 관리: `/scheduler-manage` 스킬"
+
+"🔌 **디스코드:**
 - 봇 연결됨
 - 플러그인 설치됨
 - 세션 시작 시 최근 채팅 자동 불러오기
@@ -94,18 +97,21 @@ IDENTITY.md를 읽어서 봇의 이름과 이모지를 확인합니다.
 
 "**앞으로 이렇게 쓰면 돼요:**
 
-🖥️ **터미널에서:**
+🖥️ **터미널에서:**"
 
-디스코드를 선택한 경우:
-- `claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers`
+"디스코드를 선택한 경우:
+- `claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions`
 
 텔레그램을 선택한 경우:
-- `claude --channels plugin:telegram@claude-plugins-official --dangerously-skip-permissions --dangerously-load-development-channels server:claude-peers`
+- `claude --channels plugin:telegram@claude-plugins-official --dangerously-skip-permissions`
 
 - `--channels` 플래그가 있어야 메시지를 실시간으로 받을 수 있어요
+- **tmux 안에서 실행하세요** — 스케줄러 데몬이 tmux를 통해 크론 결과를 주입해요
+- 스케줄러 데몬이 LaunchAgent로 자동 실행돼요 — 세션과 별개로 항상 돌고 있어요
 - 대화하면 하트비트가 알아서 기록하고 파일 업데이트해요
+- 크론 관리가 필요하면 `/scheduler-manage` 스킬을 사용하세요"
 
-💬 **메시징 플랫폼에서:**
+"💬 **메시징 플랫폼에서:**
 - 봇한테 메시지 보내면 응답해요
 - 세션이 꺼져있어도 다음에 켜면 대화 내역을 불러와요
 
@@ -135,7 +141,7 @@ IDENTITY.md를 읽어서 봇의 이름과 이모지를 확인합니다.
 
 ```json
 {
-  "stepsCompleted": ["step-01-init", "step-02-setup-files", "step-03-messaging-choice", "step-03b-discord-connect", "step-04-automation-choice", "step-04c-peers-cron", "step-05-bootstrap", "step-06-complete"],
+  "stepsCompleted": ["step-01-init", "step-02-setup-files", "step-03-messaging-choice", "step-03b-discord-connect", "step-04-automation-choice", "step-04b-daemon-cron", "step-05-bootstrap", "step-06-complete"],
   "lastStep": "step-06-complete",
   "status": "COMPLETE",
   "completedDate": "[현재 날짜]"
@@ -155,7 +161,7 @@ IDENTITY.md를 읽어서 봇의 이름과 이모지를 확인합니다.
 ### ✅ SUCCESS:
 
 - 봇의 정체성으로 축하 메시지 전달
-- 세팅된 모든 항목 요약
+- 세팅 요약 (데몬 모드)
 - 앞으로의 사용 방법 안내
 - 검증 모드 안내
 - 상태 파일 COMPLETE로 업데이트
@@ -166,6 +172,7 @@ IDENTITY.md를 읽어서 봇의 이름과 이모지를 확인합니다.
 - 온보딩 가이드 톤으로 말함 (봇 정체성이어야 함)
 - 세팅 요약 누락
 - 사용 방법 안내 누락
+- 데몬 관련 안내 누락
 - 상태 파일 업데이트 누락
 
 **Master Rule:** 이 순간이 사용자에게 가장 기억에 남는 순간이어야 합니다. 나만의 비서가 완성된 감동을 전달하세요.

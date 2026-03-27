@@ -11,10 +11,9 @@ nextStepOptions:
   step-03c: './step-03c-telegram-setup.md'
   step-03d: './step-03d-telegram-connect.md'
   step-04: './step-04-automation-choice.md'
-  step-04a: './step-04a-peers-install.md'
-  step-04b: './step-04b-peers-verify.md'
-  step-04c: './step-04c-peers-cron.md'
-  step-04s: './step-04s-solo-cron.md'
+  step-04a: './step-04a-daemon-setup.md'
+  step-04b: './step-04b-daemon-cron.md'
+  step-04u: './step-04u-migrate.md'
   step-05: './step-05-bootstrap.md'
   step-06: './step-06-complete.md'
 ---
@@ -87,11 +86,10 @@ nextStepOptions:
 | step-03c-telegram-setup | step-03d-telegram-connect |
 | step-03d-telegram-connect | step-04-automation-choice |
 | step-03-skip | step-04-automation-choice |
-| step-04-automation-choice | step-04a-peers-install 또는 step-04s-solo-cron (cronMode에 따라) |
-| step-04a-peers-install | step-04b-peers-verify |
-| step-04b-peers-verify | step-04c-peers-cron |
-| step-04c-peers-cron | step-05-bootstrap |
-| step-04s-solo-cron | step-05-bootstrap |
+| step-04-automation-choice | cronMode에 따라: daemon → step-04a-daemon-setup, migrating → step-04u-migrate |
+| step-04a-daemon-setup | step-04b-daemon-cron |
+| step-04b-daemon-cron | step-05-bootstrap |
+| step-04u-migrate | step-05-bootstrap |
 | step-05-bootstrap | step-06-complete |
 
 ### 3. 환영 메시지

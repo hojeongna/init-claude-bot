@@ -59,7 +59,7 @@ statusFile: '.claude-bot-status.json'
 
 **[D] 디스코드 (Discord)**
 - 서버 기반, 채널/DM으로 대화
-- discord.py로 프사 변경, 상태 설정 등 확장 기능 지원
+- REST API로 프사 변경, 상태 설정 등 확장 기능 지원
 - 팀/커뮤니티와 함께 사용하기 좋음
 
 **[T] 텔레그램 (Telegram)**

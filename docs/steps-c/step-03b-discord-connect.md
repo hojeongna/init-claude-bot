@@ -1,6 +1,6 @@
 ---
 name: 'step-03b-discord-connect'
-description: '디스코드 페어링, discord.py 설치, fetch 스크립트 생성, 프사 설정'
+description: '디스코드 페어링, requests 설치, fetch 스크립트 생성, 프사 설정'
 
 nextStepFile: './step-04-automation-choice.md'
 statusFile: '.claude-bot-status.json'
@@ -11,7 +11,7 @@ discordScripts: '../data/discord-scripts.md'
 
 ## STEP GOAL:
 
-디스코드 채널 페어링을 완료하고, discord.py와 기본 스크립트를 세팅하고, 봇 프로필 사진을 설정합니다.
+디스코드 채널 페어링을 완료하고, requests 패키지와 기본 스크립트를 세팅하고, 봇 프로필 사진을 설정합니다.
 
 ## MANDATORY EXECUTION RULES (READ FIRST):
 
@@ -90,7 +90,7 @@ step-03a에서 플러그인을 설치했는데, 재시작해야 설정 명령어
 
 ⚠️ **주의:** 토큰을 일반 채팅에 그냥 붙여넣지 마세요! 반드시 `/discord:configure` 뒤에 붙여야 해요!
 
-⚠️ **참고:** 환경변수(`DISCORD_BOT_TOKEN`)는 discord.py 스크립트용이고, `/discord:configure`는 Claude Channels 플러그인용입니다. 둘 다 필요해요!
+⚠️ **참고:** 환경변수(`DISCORD_BOT_TOKEN`)는 Python 스크립트용이고, `/discord:configure`는 Claude Channels 플러그인용입니다. 둘 다 필요해요!
 
 설정이 되면 토큰 앞 6자리를 마스킹해서 보여줍니다. 확인 후: "✅ 플러그인 토큰 설정 완료!"
 
@@ -118,14 +118,14 @@ step-03a에서 플러그인을 설치했는데, 재시작해야 설정 명령어
 
 ⚠️ **참고:** 페어링이 안 되면 `claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions` 로 실행했는지 다시 확인하세요!
 
-### 4. discord.py 설치
+### 4. requests 설치
 
-"**discord.py 패키지를 설치할게요!**
+"**requests 패키지를 설치할게요!**
 
-프사 변경, 상태 설정 같은 확장 기능에 필요해요."
+디스코드 API를 직접 호출해서 채팅 수집, 프사 변경 같은 기능에 쓰여요. 가벼워요!"
 
 ```bash
-pip install discord.py
+pip install requests
 ```
 
 ### 5. 스크립트 생성
@@ -168,7 +168,7 @@ python3 scripts/fetch_discord.py --limit 5
 "**디스코드 연동 완료! 🎉**
 
 - ✅ 디스코드 채널 페어링 완료
-- ✅ discord.py 설치됨
+- ✅ requests 설치됨
 - ✅ `scripts/fetch_discord.py` 생성됨
 - ✅ `scripts/change_avatar.py` 생성됨
 - ✅ 연결 테스트 통과
@@ -207,7 +207,7 @@ Display: **[C] 다음 단계로 진행 (자동화 설정)**
 
 - 환경변수 확인됨
 - 디스코드 채널 페어링 완료 (`/discord:access pair` + `policy allowlist`)
-- discord.py 설치됨
+- requests 설치됨
 - fetch_discord.py, change_avatar.py 생성됨
 - 연결 테스트 통과
 - 상태 파일 업데이트됨

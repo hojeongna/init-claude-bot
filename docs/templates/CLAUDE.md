@@ -44,45 +44,31 @@ Every session 시작 시 반드시 읽기:
 
 **하나의 정보가 여러 곳에 해당되는 것 같으면, 가장 핵심적인 한 곳에만 적어라.**
 
-## 세션 역할 (Peers 모드 전용)
+## 스케줄러 (Python 데몬)
 
-`memory/cron-registry.md`의 크론 모드가 `peers`인 경우에만 적용된다.
+크론 세션 없음. 모든 스케줄링은 **Python 데몬**이 담당한다.
 
-### 역할 판단 (세션 시작 시)
+- 데몬: `scripts/scheduler_daemon.py` — LaunchAgent로 자동시작
+- 스케줄 목록: 데몬 내 `CRON_SCHEDULE` 메타데이터 + `dashboard/cron-schedule.json`
+- 실행 상태: `dashboard/cron-status.json`
 
-1. `list_peers` (scope: machine)로 피어 목록을 확인한다
-2. summary에 `cron-worker`가 있는 피어가 있으면 → 나는 **메인 세션**
-3. 없고, 내가 크론 전담으로 시작됐으면 → 나는 **크론 세션**
+### 크론 주입 형태
 
-### 메인 세션 역할
+스케줄러가 tmux로 메인 세션에 주입할 때 항상 `Cron :` 접두사가 붙는다:
+```
+Cron : CRON_NAME: 내용
+```
 
-- `set_summary`로 자신의 역할을 설정한다 (예: "메인 세션 — [작업 내용]")
-- 크론은 **헬스체크 1개만** 등록 (크론 세션 생존 확인)
-- 크론 복원/재등록 로직 수행하지 않음
-- 유저 대화에 집중
+### 새 크론 추가 방법
 
-### 크론 세션 역할
+1. `scripts/scheduler_daemon.py`에 함수 작성
+2. `CRON_SCHEDULE` 목록에 메타데이터 추가
+3. `Scheduler.tick()` 메서드에 시간 조건 추가
+4. 스케줄러 재시작: `launchctl unload/load ~/Library/LaunchAgents/com.[봇이름].scheduler.plist`
 
-- 시작 시 `set_summary("cron-worker")`로 자신을 등록
-- 모든 크론을 **백그라운드 서브에이전트**로 등록
-- 메인 스레드는 항상 대기 상태 유지 (메시지 수신/응답)
-- 유저에게 직접 말 걸지 않음
-- 메인 세션에서 메시지가 오면 즉시 응답
+크론 관리 스킬: `/scheduler-manage` — 크론 추가/수정/삭제/조회 가이드
 
 ## Cron 규칙
-
-### 모든 크론은 백그라운드 서브에이전트로 실행
-
-크론이 실행될 때 메인 대화를 방해하지 않도록 반드시 백그라운드 에이전트로 처리한다.
-
-```
-크론 프롬프트 예시:
-"Run as background agent: Read HEARTBEAT.md and execute instructions. Respond HEARTBEAT_OK if nothing to report."
-```
-
-### 유저가 등록 요청하거나 직접 등록할 때도 서브에이전트로
-
-유저가 "~해줘", "~등록해줘", "~모니터링해줘" 등 반복 작업을 요청하거나, `/loop` 등으로 직접 크론을 등록하려 할 때도 항상 프롬프트에 `"Run as background agent: ..."` 를 붙여서 백그라운드 서브에이전트로 실행되도록 설정한다. 유저가 명시적으로 포그라운드를 원하지 않는 한 예외 없음.
 
 ### 크론 응답 모드
 
@@ -101,39 +87,12 @@ Every session 시작 시 반드시 읽기:
 
 ### 기본 크론
 
-- HEARTBEAT: 30분마다 (`*/30 * * * *`)
-- 최신화 루프: 5일마다 (`3 9 */5 * *`) — 전체 설정 파일 리뷰 및 업데이트
-- 크론 스냅샷: 1일마다 (`7 0 * * *`) — 크론 목록을 레지스트리에 백업
-- 크론 재등록: 5일마다 (`11 9 */5 * *`) — 7일 만료 방지용 전체 재등록
+- HEARTBEAT: 30분마다 — 대화 분석 · 파일 업데이트
 
-### 크론 레지스트리 (memory/cron-registry.md)
+### 크론 복원
 
-크론은 세션 종료 시 소멸하고, 7일 후 자동 만료된다.
-이를 복원하기 위해 `memory/cron-registry.md`에 전체 크론 정보를 기록한다.
-
-**필수 규칙:**
-- 크론을 추가/수정/삭제할 때마다 즉시 `memory/cron-registry.md`를 업데이트할 것
-- 변경 이력 섹션: [YYYY-MM-DD HH:MM] 추가/수정/삭제 내용 기록
-
-### 크론 복원 (세션 시작 시)
-
-**Solo 모드만 해당** — Peers 모드에서는 크론 세션이 살아있으므로 복원 불필요.
-
-SessionStart(startup) 훅이 `memory/cron-registry.md`를 주입하고 `CRON_RECOVERY_CHECK` 지시를 보낸다.
-
-**크론 복원 절차 (Solo 모드, 매 세션 시작 시):**
-
-1. `memory/cron-registry.md`에서 크론 모드를 확인한다
-2. **Peers 모드면:** `list_peers`로 cron-worker 피어 생존만 확인하고 끝
-3. **Solo 모드면:**
-   a. `CronList`로 현재 등록된 크론 목록을 확인한다
-   b. `memory/cron-registry.md`의 등록 목록과 비교한다
-   c. 누락된 크론이 있으면 `CronCreate`로 재등록한다
-   d. 새로운 Job ID로 `memory/cron-registry.md`를 업데이트한다
-   e. 이미 모든 크론이 등록되어 있으면 아무것도 하지 않는다
-
-이 작업은 백그라운드 에이전트가 아닌 **메인 세션에서 즉시** 수행할 것.
-크론 복원은 유저에게 알리지 않고 Silent Automation으로 처리한다.
+데몬이 LaunchAgent로 항상 실행 중이므로 세션 시작 시 크론 복원은 불필요하다.
+데몬 상태가 의심되면 `pgrep -f scheduler_daemon`으로 확인.
 
 ## 도구/자동화 원칙
 
@@ -150,7 +109,7 @@ TRIGGERS.md에 트리거→행동 매핑을 정의한다.
 유저가 새로운 자동화를 요청하면:
 1. Python 스크립트 생성 (`scripts/` 폴더)
 2. TRIGGERS.md에 트리거 등록
-3. 필요시 크론 설정
+3. 필요시 크론 설정 (scheduler_daemon.py 수정, `/scheduler-manage` 스킬 참조)
 
 ## 메모리
 
