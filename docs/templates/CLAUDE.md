@@ -72,7 +72,7 @@ Cron : CRON_NAME: 내용
 
 ### 크론 응답 모드
 
-각 크론에는 `응답` 설정이 있다. `memory/cron-registry.md`의 응답 컬럼 참조.
+각 크론에는 `응답` 설정이 있다. `scheduler_daemon.py`의 `CRON_SCHEDULE` 메타데이터 참조.
 
 - `silent` — 조용히 처리. 유저에게 아무 알림 없음
 - `notify` — 실행 결과를 유저에게 항상 알림

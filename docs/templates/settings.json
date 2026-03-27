@@ -14,15 +14,6 @@
           }
         ]
       },
-      {
-        "matcher": "startup",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "cat memory/cron-registry.md 2>/dev/null || true"
-          }
-        ]
-      }
     ],
     "PostCompact": [
       {
