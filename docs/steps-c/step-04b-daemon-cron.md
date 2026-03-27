@@ -39,7 +39,6 @@ statusFile: '.claude-bot-status.json'
 
 - 🎯 크론 메뉴 표시 후 사용자 선택 반영
 - 💾 scheduler_daemon.py 업데이트 + 데몬 재시작
-- 📖 memory/cron-registry.md 초기화
 
 ## CONTEXT BOUNDARIES:
 
@@ -188,47 +187,7 @@ python3 -c "import sys; sys.path.insert(0, 'scripts'); from scheduler_daemon imp
 
 테스트 결과를 사용자에게 보여주고 확인받습니다.
 
-### 6. 크론 레지스트리 초기화
-
-`memory/cron-registry.md`에 등록된 크론 정보를 기록합니다.
-
-**Daemon 모드 형식:**
-
-```markdown
-# Cron Registry
-
-_크론이 추가/수정/삭제될 때마다 이 파일을 업데이트할 것._
-
-## 크론 모드
-
-**모드:** daemon
-
----
-
-## 등록된 크론
-
-| 이름 | 스케줄 | 방식 | 응답 | 설명 |
-|------|--------|------|------|------|
-| 하트비트 | 4,34 * * * * | claude -p | silent | 대화 분석 · 파일 업데이트 |
-| [추가된 크론들...] |
-
----
-
-## 스케줄러 관리
-
-- 데몬: `scripts/scheduler_daemon.py`
-- LaunchAgent: `~/Library/LaunchAgents/com.[봇이름].scheduler.plist`
-- 크론 추가/수정: `/scheduler-manage` 스킬 사용
-- 로그: `memory/cron.log`, `dashboard/cron-status.json`
-
----
-
-## 변경 이력
-
-[현재날짜 HH:MM] 초기 등록 — 하트비트 [+ 추가된 크론들]
-```
-
-### 7. 등록 결과 확인
+### 6. 등록 결과 확인
 
 등록된 모든 크론을 요약합니다:
 
@@ -246,11 +205,11 @@ _크론이 추가/수정/삭제될 때마다 이 파일을 업데이트할 것._
 
 다음 단계에서는 드디어 봇과 첫 대화를 나눠요!"
 
-### 8. 상태 업데이트
+### 7. 상태 업데이트
 
 `{statusFile}`의 `stepsCompleted`에 `step-04b-daemon-cron`을 추가합니다.
 
-### 9. Present MENU OPTIONS
+### 8. Present MENU OPTIONS
 
 Display: "**[C] 다음 단계로 진행 (부트스트랩 대화)**"
 
@@ -274,7 +233,6 @@ Display: "**[C] 다음 단계로 진행 (부트스트랩 대화)**"
 - 사용자 선택이 반영됨 (스킵 포함)
 - 선택한 크론이 scheduler_daemon.py에 추가됨
 - 데몬이 재시작되고 정상 작동 확인됨
-- memory/cron-registry.md 초기화됨
 - 사용자가 결과를 확인함
 - 상태 파일 업데이트됨
 
@@ -283,7 +241,6 @@ Display: "**[C] 다음 단계로 진행 (부트스트랩 대화)**"
 - 하트비트를 다시 등록하거나 수정함
 - 사용자 선택 없이 크론을 등록함
 - 데몬 재시작 누락
-- 크론 레지스트리 초기화 누락
 - 상태 파일 업데이트 누락
 
 **Master Rule:** 추가 크론은 전부 선택적입니다. 사용자가 스킵해도 하트비트만으로 충분합니다. 강요하지 마세요.
